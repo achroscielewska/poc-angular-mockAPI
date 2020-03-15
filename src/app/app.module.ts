@@ -4,10 +4,17 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+import {
+  PantryListComponent,
+  PantryElementComponent
+} from './components/pantry';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PantryListComponent,
+    PantryElementComponent
   ],
   imports: [
     BrowserModule,

@@ -3,7 +3,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { PantryService } from './service/pantry.service';
+
+import { PantryElementComponent, PantryListComponent } from './components/pantry';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -14,7 +15,9 @@ describe('AppComponent', () => {
         HttpClientModule
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        PantryListComponent,
+        PantryElementComponent
       ],
       providers: [
         HttpClient

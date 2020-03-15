@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { PantryListComponent } from './pantry-list.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 describe('PantryListComponent', () => {
   let component: PantryListComponent;
@@ -8,9 +9,10 @@ describe('PantryListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PantryListComponent ]
+      imports: [HttpClientModule],
+      declarations: [PantryListComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

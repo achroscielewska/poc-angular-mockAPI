@@ -1,20 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-
-import { PantryService } from './service/pantry.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'mockAPI';
-  pantryContent$: Observable<any>;
 
-  constructor(private pantryService: PantryService) {}
-
-  ngOnInit() {
-    this.pantryContent$ = this.pantryService.getPantryContent();
-  }
+  constructor() {}
 }

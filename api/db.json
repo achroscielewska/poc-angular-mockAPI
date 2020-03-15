@@ -13,6 +13,13 @@
       "kind": "Makaron, ryż, kasza",
       "weight": "400",
       "expirationDate": "2020-09-30"
+    },
+    {
+      "id": 3,
+      "item": "Płatki owsiane górskie",
+      "kind": "Makaron, ryż, kasza",
+      "weight": "400",
+      "expirationDate": "2020-08-31"
     }
   ]
 }
