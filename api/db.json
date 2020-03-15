@@ -1,0 +1,18 @@
+{
+  "pantry": [
+    {
+      "id": 1,
+      "item": "Kasza manna",
+      "kind": "Makaron, ryż, kasza",
+      "weight": "400",
+      "expirationDate": "2020-09-30"
+    },
+    {
+      "id": 2,
+      "item": "Kasza manna",
+      "kind": "Makaron, ryż, kasza",
+      "weight": "400",
+      "expirationDate": "2020-09-30"
+    }
+  ]
+}
