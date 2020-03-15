@@ -1,1 +1,7 @@
 {{title}}
+
+
+<h2>Pantry</h2>
+<div *ngFor="let item of pantryContent$ | async">
+  <p>{{item.item}}</p>
+</div>
