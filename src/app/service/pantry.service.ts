@@ -1,25 +1,38 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { environment  as env } from '../../environments/environment';
+import { environment as env } from '../../environments/environment';
 import { PantryDto } from '../dto';
+import { PantryListHelperService } from './pantry-list-helper.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PantryService {
+  pageQueryUrl = '_page=';
+  limitQueryUrl = '_limit=';
   headers = this.prepareHeaders();
-  constructor(private httpClient: HttpClient) {}
+  queryLimit = env.queryLimit;
+
+  firstGetPantryContentUrl = `${env.pantryUrl}?${this.pageQueryUrl}1&${this.limitQueryUrl}${this.queryLimit}`;
+
+  constructor(
+    private httpClient: HttpClient,
+    private pantryListHelperService: PantryListHelperService) { }
 
   private prepareHeaders(): HttpHeaders {
     return new HttpHeaders().append('Content-Type', 'application/json');
   }
 
-  getPantryContent(): Observable<PantryDto[]> {
+  getPantryContent(url = this.firstGetPantryContentUrl): Observable<HttpResponse<any>> {
     return this.httpClient
-      .get(env.pantryUrl, { ...this.headers })
-      .pipe(map((res: PantryDto[]) => res));
+      .get(`${url}`, { headers: this.headers, observe: 'response' })
+      .pipe(map((resp: HttpResponse<any>) => {
+        this.pantryListHelperService.saveTotalCount(resp.headers.get('X-Total-Count'));
+        this.pantryListHelperService.saveLinks(resp.headers.get('link'));
+        return resp.body;
+      }));
   }
 
   getPantryElement(id: number): Observable<PantryDto> {
