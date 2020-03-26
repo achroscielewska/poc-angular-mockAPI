@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { PantryDto } from 'src/app/dto';
+import { PantryElDto } from 'src/app/dto';
 
 @Component({
   selector: 'app-pantry-element',
@@ -7,7 +7,7 @@ import { PantryDto } from 'src/app/dto';
   styleUrls: ['./pantry-element.component.scss']
 })
 export class PantryElementComponent {
-  @Input() pantryElement: PantryDto;
+  @Input() pantryElement: PantryElDto;
 
   constructor() { }
 }

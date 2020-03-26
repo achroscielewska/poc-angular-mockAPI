@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  queryLimit: 2,
+  queryLimit: 20,
   pantryUrl: `/api/pantry`
 };
 

@@ -1,7 +1,11 @@
 <h2>Pantry</h2>
-<p>Total number of elements <strong *ngIf="totalCounter">{{totalCounter}}</strong></p>
+<div>
+  <p>Total number of elements <strong *ngIf="totalCounter">{{totalCounter}}</strong></p>
+  <button (click)="toggleAddForm()">Add new</button>
+</div>
+
 <div *ngFor="let item of pantryContent$ | async">
-  <p (click)="showPantryElDetails(item.id)">{{item.item}}</p>
+  <p (click)="showDetails(item.id)">{{item.item}}</p>
 </div>
 
 <button *ngIf="firstPageLink" (click)="goToSelectedPage(firstPageLink)">First page</button>
@@ -9,9 +13,13 @@
 <button *ngIf="nextPageLink" (click)="goToSelectedPage(nextPageLink)">Next page</button>
 <button *ngIf="lastPageLink" (click)="goToSelectedPage(lastPageLink)">Last page</button>
 
-
 <div *ngIf="(pantryElement$ | async) as pantryElement">
   <div *ngIf="pantryElement">
     <app-pantry-element [pantryElement]="pantryElement"></app-pantry-element>
   </div>
+</div>
+
+<div *ngIf="addFormVisible">
+  <button (click)="toggleAddForm()">Hide</button>
+  <app-pantry-element-new></app-pantry-element-new>
 </div>

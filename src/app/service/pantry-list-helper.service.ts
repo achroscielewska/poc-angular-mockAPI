@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +35,6 @@ export class PantryListHelperService {
       link = link.substring(1);
       link = link.slice(0, -1);
       link = link.replace('http://localhost:4200/', '');
-
 
       switch (res[1]) {
         case 'rel="first"':

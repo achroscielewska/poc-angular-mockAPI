@@ -1,4 +1,4 @@
-export interface PantryDto {
+export interface PantryElDto {
   id: number;
   item: string;
   kind: string;

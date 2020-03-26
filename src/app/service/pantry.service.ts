@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment as env } from '../../environments/environment';
-import { PantryDto } from '../dto';
+import { PantryElDto } from '../dto';
 import { PantryListHelperService } from './pantry-list-helper.service';
 
 @Injectable({
@@ -35,10 +35,16 @@ export class PantryService {
       }));
   }
 
-  getPantryElement(id: number): Observable<PantryDto> {
+  getPantryElement(id: number): Observable<PantryElDto> {
     return this.httpClient
       .get(`${env.pantryUrl}/${id}`, { ...this.headers })
-      .pipe(map((res: PantryDto) => res));
+      .pipe(map((res: PantryElDto) => res));
+  }
+
+  savePantryElement(pantryEl: PantryElDto): Observable<any> {
+    return this.httpClient
+      .post(`${env.pantryUrl}`, pantryEl, { ...this.headers });
+
   }
 
 }
