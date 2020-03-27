@@ -4,8 +4,13 @@
   <button (click)="toggleAddForm()">Add new</button>
 </div>
 
-<div *ngFor="let item of pantryContent$ | async">
-  <p (click)="showDetails(item.id)">{{item.item}}</p>
+<div *ngFor="let item of pantryContent">
+  <div class="list-element" (click)="showDetails(item.id)">
+    <p>{{item.item}}</p>
+    <p>{{item.kind}}</p>
+  </div>
+
+  <button (click)="deleteElement(item.id)">Delete</button>
 </div>
 
 <button *ngIf="firstPageLink" (click)="goToSelectedPage(firstPageLink)">First page</button>

@@ -25,7 +25,7 @@ export class PantryService {
     return new HttpHeaders().append('Content-Type', 'application/json');
   }
 
-  getPantryContent(url = this.firstGetPantryContentUrl): Observable<HttpResponse<any>> {
+  getPantryContent(url = this.firstGetPantryContentUrl): Observable<PantryElDto[]> {
     return this.httpClient
       .get(`${url}`, { headers: this.headers, observe: 'response' })
       .pipe(map((resp: HttpResponse<any>) => {
@@ -45,6 +45,11 @@ export class PantryService {
     return this.httpClient
       .post(`${env.pantryUrl}`, pantryEl, { ...this.headers });
 
+  }
+
+  deletePantryElement(id: number): Observable<any> {
+    return this.httpClient
+      .delete(`${env.pantryUrl}/${id}`, { ...this.headers });
   }
 
 }

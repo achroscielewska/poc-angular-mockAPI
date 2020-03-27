@@ -2,8 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { PantryService } from 'src/app/service/pantry.service';
 import { PantryElDto } from 'src/app/dto';
-import { HttpResponse } from '@angular/common/http';
 import { PantryListHelperService } from 'src/app/service/pantry-list-helper.service';
+import { PantryStoreService } from 'src/app/service/pantry-store.service';
 
 @Component({
   selector: 'app-pantry-list',
@@ -11,10 +11,11 @@ import { PantryListHelperService } from 'src/app/service/pantry-list-helper.serv
   styleUrls: ['./pantry-list.component.scss']
 })
 export class PantryListComponent implements OnInit, OnDestroy {
-  pantryContent$: Observable<HttpResponse<any>>;
+  pantryContent$: Observable<PantryElDto[]>;
+  pantryContentSub: Subscription;
+  pantryContent: PantryElDto[];
+
   pantryElement$: Observable<PantryElDto>;
-  pantryElementsSub: Subscription;
-  pantryElement: PantryElDto;
 
   listElSub = new Subscription();
 
@@ -29,21 +30,35 @@ export class PantryListComponent implements OnInit, OnDestroy {
 
   constructor(
     private pantryService: PantryService,
-    private helper: PantryListHelperService
+    private helper: PantryListHelperService,
+    private pantryStoreService: PantryStoreService
   ) { }
 
   ngOnInit(): void {
-    this.pantryContent$ = this.pantryService.getPantryContent();
+    this.pantryStoreService.getPantryList();
+    this.pantryStoreService.currentPantryStore.subscribe(data => {
+      this.pantryContent = data;
+    });
 
     this.listElSub.add(this.helper.currentFirstPageLink.subscribe(data => this.firstPageLink = data));
     this.listElSub.add(this.helper.currentPrevPageLink.subscribe(data => this.prevPageLink = data));
     this.listElSub.add(this.helper.currentNextPageLink.subscribe(data => this.nextPageLink = data));
     this.listElSub.add(this.helper.currentLastPageLink.subscribe(data => this.lastPageLink = data));
     this.listElSub.add(this.helper.currentTotalCount.subscribe(data => this.totalCounter = data));
+    this.listElSub.add(this.helper.currentIsAddFormVisible.subscribe(data => this.addFormVisible = data));
   }
 
   ngOnDestroy() {
     this.listElSub.unsubscribe();
+    this.pantryContentSub.unsubscribe();
+  }
+
+  deleteElement(id: number) {
+    this.pantryService.deletePantryElement(id)
+      .subscribe(
+        res => this.pantryStoreService.getPantryList(),
+        err => console.error(err)
+      );
   }
 
   showDetails(id: number) {
@@ -55,7 +70,7 @@ export class PantryListComponent implements OnInit, OnDestroy {
   }
 
   toggleAddForm() {
-    this.addFormVisible = !this.addFormVisible;
+    this.helper.toggleAddForm(!this.addFormVisible);
   }
 
 }

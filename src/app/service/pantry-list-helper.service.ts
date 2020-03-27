@@ -20,6 +20,9 @@ export class PantryListHelperService {
   private totalCount = new BehaviorSubject(0);
   currentTotalCount = this.totalCount.asObservable();
 
+  private isAddFormVisible = new BehaviorSubject(false);
+  currentIsAddFormVisible = this.isAddFormVisible.asObservable();
+
   constructor() { }
 
   saveLinks(links: string) {
@@ -57,5 +60,9 @@ export class PantryListHelperService {
 
   saveTotalCount(total: string) {
     this.totalCount.next(+total);
+  }
+
+  toggleAddForm(state: boolean) {
+    this.isAddFormVisible.next(state);
   }
 }

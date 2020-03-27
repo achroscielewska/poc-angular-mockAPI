@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PantryElementNewComponent } from './pantry-element-new.component';
+import { FormBuilder } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('PantryElementNewComponent', () => {
   let component: PantryElementNewComponent;
@@ -8,7 +10,11 @@ describe('PantryElementNewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PantryElementNewComponent ]
+      imports: [
+        HttpClientModule
+      ],
+      declarations: [ PantryElementNewComponent ],
+      providers: [ FormBuilder ],
     })
     .compileComponents();
   }));
