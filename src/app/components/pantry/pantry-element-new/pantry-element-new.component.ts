@@ -28,7 +28,7 @@ export class PantryElementNewComponent implements OnInit {
     private pantryService: PantryService,
     private helper: PantryListHelperService,
     private pantryStoreService: PantryStoreService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.listElSub.add(this.helper.currentIsAddFormVisible.subscribe(data => this.addFormVisible = data));
@@ -46,7 +46,5 @@ export class PantryElementNewComponent implements OnInit {
           err => console.error(err)
         );
     }
-
   }
-
 }

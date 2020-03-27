@@ -1,19 +1,19 @@
 <form [formGroup]="pantryElForm" (ngSubmit)="onSubmit()">
   <label>
     Item name:
-    <input type="text" formControlName ="item">
+    <input type="text" formControlName="item">
   </label>
   <label>
     Kind:
-    <input type="text" formControlName ="kind">
+    <input type="text" formControlName="kind">
   </label>
   <label>
     Weight:
-    <input type="text" formControlName ="weight">
+    <input type="text" formControlName="weight">
   </label>
   <label>
     ExpirationDate:
-    <input type="text" formControlName ="expirationDate">
+    <input type="text" formControlName="expirationDate">
   </label>
   <button type="submit" [disabled]="pantryElForm.status==='INVALID'">SAVE</button>
 </form>

@@ -41,19 +41,19 @@ export class PantryListHelperService {
 
       switch (res[1]) {
         case 'rel="first"':
-        this.firstPageLink.next(link);
-        break;
+          this.firstPageLink.next(link);
+          break;
         case 'rel="prev"':
-        this.prevPageLink.next(link);
-        break;
+          this.prevPageLink.next(link);
+          break;
         case 'rel="next"':
-        this.nextPageLink.next(link);
-        break;
+          this.nextPageLink.next(link);
+          break;
         case 'rel="last"':
-        this.lastPageLink.next(link);
-        break;
+          this.lastPageLink.next(link);
+          break;
         default:
-        break;
+          break;
       }
     });
   }

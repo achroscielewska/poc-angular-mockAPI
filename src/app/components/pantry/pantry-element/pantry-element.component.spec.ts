@@ -8,9 +8,9 @@ describe('PantryElementComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PantryElementComponent ]
+      declarations: [PantryElementComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

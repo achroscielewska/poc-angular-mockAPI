@@ -2,7 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { PantryListComponent } from './pantry-list.component';
 import { HttpClientModule } from '@angular/common/http';
 
-
 describe('PantryListComponent', () => {
   let component: PantryListComponent;
   let fixture: ComponentFixture<PantryListComponent>;

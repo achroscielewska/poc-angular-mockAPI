@@ -13,10 +13,10 @@ describe('PantryElementNewComponent', () => {
       imports: [
         HttpClientModule
       ],
-      declarations: [ PantryElementNewComponent ],
-      providers: [ FormBuilder ],
+      declarations: [PantryElementNewComponent],
+      providers: [FormBuilder],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
